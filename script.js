@@ -40,15 +40,24 @@ function update (event){
 
 
 function iniciarJogo(){
-    if(snake[0].x > 15 * box && direction == "right") snake[0].x = 0;
-    if(snake[0].x < 0 * box && direction == "left") snake[0].x = 16 * box;
-    if(snake[0].y > 15 * box && direction == "down") snake[0].y = 0;
-    if(snake[0].y < 0 * box && direction == "up") snake[0].y = 16 * box;
+    
+    var score = snake.length;
+    // Função para a cobrinha aparecer do outro lado
+    // if(snake[0].x > 15 * box && direction == "right") snake[0].x = 1;
+    // if(snake[0].x < 0 * box && direction == "left") snake[0].x = 16 * box;
+    // if(snake[0].y > 15 * box && direction == "down") snake[0].y = 1;
+    // if(snake[0].y < 0 * box && direction == "up") snake[0].y = 16 * box;
+
+    // Função para a cobrinha bater na parede
+    if(snake[0].x > 15 * box && direction == "right") clearInterval(jogo), alert(`Pontuação: ${score}`);
+    if(snake[0].x < 0 * box && direction == "left") clearInterval(jogo), alert(`Pontuação: ${score}`);
+    if(snake[0].y > 15 * box && direction == "down") clearInterval(jogo), alert(`Pontuação: ${score}`);
+    if(snake[0].y < 0 * box && direction == "up") clearInterval(jogo), alert(`Pontuação: ${score}`);
 
     for(i = 1; i < snake.length; i++){
         if(snake[0].x == snake[i].x && snake[0].y == snake[i].y){
             clearInterval(jogo);
-            alert('Game Over');
+            alert(score);
         }
     }
 
@@ -78,6 +87,8 @@ function iniciarJogo(){
     }
 
     snake.unshift(newHead);
+
+
 
 }
 
